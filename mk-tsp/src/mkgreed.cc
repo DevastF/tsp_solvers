@@ -221,63 +221,42 @@ void CMKGREED::iterate(int iter)
    double cost;
    int bestAgent;
    int bestTarget;
+   int bestInsertIndex;
    CoordsVector costCoords;
+   Coords currentCoords;
+
    std::string debug;
 
-   while ((step < k) && not term) { //perform adaptation step
+   // initial search in close neighborhood
 
-      DEBUG("Step: " << step);
-
+   while ((step < k) && not term) {
+      DEBUG("Greedy search step: " << step);
       bestSolutionLength = std::numeric_limits<double>::max();
-
       for(int i = 0; i < targets.size(); i++){
          if(targets.at(i)->visitedBy == nullptr){
-            for(int j = 0; j < agents.size(); j++){
-               costCoords = agents.at(j)->path;
-               cost = targets.at(i)->coords.squared_distance(costCoords.back()) + targets.at(i)->coords.squared_distance(targets.at(startNode)->coords);
-               if(cost < bestSolutionLength){
+            currentCoords = targets.at(i)->coords;
+            for(int j = 0; j < agents.size(); j++){   
+               for(int k = 1; k <= agents.at(j)->path.size(); ++k){
+                  costCoords = agents.at(j)->path;
+                  costCoords.insert(costCoords.begin()+k,currentCoords);
+                  cost = get_path_length(costCoords);
+                  if(cost < bestSolutionLength){
                   bestSolutionLength = cost;
                   bestTarget = i;
                   bestAgent = j;
+                  bestInsertIndex = k;
+                  }
                }
             }
          }   
       }
-
       targets.at(bestTarget)->visitedBy = agents.at(bestAgent);
-      agents.at(bestAgent)->path.push_back(targets.at(bestTarget)->coords);
-
-      debug = "Solution: Agent "+std::to_string(agents.at(bestAgent)->label)+" Node "+std::to_string(targets.at(bestTarget)->label)+" "+std::to_string(targets.at(bestTarget)->coords.x)+" "+std::to_string(targets.at(bestTarget)->coords.y);
-      DEBUG(debug);
-      debug = "Was saved: Agent "+std::to_string(targets.at(bestTarget)->visitedBy->label)+" Node "+std::to_string(targets.at(bestTarget)->label)+" "+std::to_string(agents.at(bestAgent)->path.back().x)+" "+std::to_string(agents.at(bestAgent)->path.back().y);
-      DEBUG(debug);
-
-      /*if (BEST_SOLUTION) {
-         getSolution(step, solution); //collect solution
-         const double len = get_path_length(solution);
-         if (len < bestSolutionLength) {
-            bestSolution = solution;
-            bestSolutionStep = step;
-            bestSolutionLength = len;
-         }
-      }
-      if (TERM_CHANGE) {
-         ring->get_ring_route(step, routes[routeCur]);
-         if (routes[routeCur].size() == routes[routePrev].size()) {
-            term = true;
-            for (int i = 0; i < routes[routeCur].size(); ++i) {
-               if (routes[routeCur][i] != routes[routePrev][i]) {
-                  term = false;
-                  break;
-               }
-            }
-         }
-         routePrev = (routePrev + 1)%2;
-         routeCur = (routeCur + 1)%2;
-      }*/
-
+      agents.at(bestAgent)->path.insert(agents.at(bestAgent)->path.begin()+bestInsertIndex,targets.at(bestTarget)->coords);
       step++;
-   } //end step loop
+   }
+
+
+
    tSolve.stop();
 
   /* double length;

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcrl-algorithm.a  CMakeFiles/crl-algorithm.dir/src/algorithm.cc.o CMakeFiles/crl-algorithm.dir/src/algorithm_base.cc.o CMakeFiles/crl-algorithm.dir/src/result_log.cc.o CMakeFiles/crl-algorithm.dir/src/text_result_log.cc.o
+/usr/bin/ranlib libcrl-algorithm.a

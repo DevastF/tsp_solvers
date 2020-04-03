@@ -20,5 +20,8 @@ $cmd gsoa-etsp
 $cmd -C gsoa-etsp install
 $cmd gsoa-cetsp 
 $cmd -C gsoa-cetsp install
+$cmd mk-tsp 
+$cmd -C mk-tsp install
 cd -
+
 

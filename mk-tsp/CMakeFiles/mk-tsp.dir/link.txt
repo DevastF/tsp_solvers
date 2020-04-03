@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/mk-tsp.dir/src/mk-tsp.cc.o CMakeFiles/mk-tsp.dir/src/coords.cc.o CMakeFiles/mk-tsp.dir/src/mkgreed.cc.o CMakeFiles/mk-tsp.dir/src/route_path_utils.cc.o  -o mk-tsp -lcrl-algorithm -lcrl-gui 

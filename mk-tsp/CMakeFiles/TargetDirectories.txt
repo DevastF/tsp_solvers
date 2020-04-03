@@ -1,0 +1,7 @@
+/home/fnekovar/git/gsoa/mk-tsp/CMakeFiles/install/strip.dir
+/home/fnekovar/git/gsoa/mk-tsp/CMakeFiles/edit_cache.dir
+/home/fnekovar/git/gsoa/mk-tsp/CMakeFiles/mk-tsp.dir
+/home/fnekovar/git/gsoa/mk-tsp/CMakeFiles/list_install_components.dir
+/home/fnekovar/git/gsoa/mk-tsp/CMakeFiles/install/local.dir
+/home/fnekovar/git/gsoa/mk-tsp/CMakeFiles/rebuild_cache.dir
+/home/fnekovar/git/gsoa/mk-tsp/CMakeFiles/install.dir

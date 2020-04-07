@@ -70,8 +70,8 @@ install/strip/fast: preinstall/fast
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -272,17 +272,17 @@ tgsoa-cetsp/fast:
 .PHONY : tgsoa-cetsp/fast
 
 #=============================================================================
-# Target rules for targets named mk-tsp
+# Target rules for targets named tmk-tsp
 
 # Build rule for target.
-mk-tsp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mk-tsp
-.PHONY : mk-tsp
+tmk-tsp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tmk-tsp
+.PHONY : tmk-tsp
 
 # fast build rule for target.
-mk-tsp/fast:
-	$(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/build
-.PHONY : mk-tsp/fast
+tmk-tsp/fast:
+	$(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/build
+.PHONY : tmk-tsp/fast
 
 # Help Target
 help:
@@ -305,7 +305,7 @@ help:
 	@echo "... crl-tsplib"
 	@echo "... tgsoa-etsp"
 	@echo "... tgsoa-cetsp"
-	@echo "... mk-tsp"
+	@echo "... tmk-tsp"
 .PHONY : help
 
 

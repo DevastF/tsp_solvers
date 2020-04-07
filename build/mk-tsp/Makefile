@@ -101,17 +101,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -122,6 +111,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # Special rule for the target install
 install: preinstall
@@ -168,19 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-mk-tsp/CMakeFiles/mk-tsp.dir/rule:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f CMakeFiles/Makefile2 mk-tsp/CMakeFiles/mk-tsp.dir/rule
-.PHONY : mk-tsp/CMakeFiles/mk-tsp.dir/rule
+mk-tsp/CMakeFiles/tmk-tsp.dir/rule:
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f CMakeFiles/Makefile2 mk-tsp/CMakeFiles/tmk-tsp.dir/rule
+.PHONY : mk-tsp/CMakeFiles/tmk-tsp.dir/rule
 
 # Convenience name for target.
-mk-tsp: mk-tsp/CMakeFiles/mk-tsp.dir/rule
+tmk-tsp: mk-tsp/CMakeFiles/tmk-tsp.dir/rule
 
-.PHONY : mk-tsp
+.PHONY : tmk-tsp
 
 # fast build rule for target.
-mk-tsp/fast:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/build
-.PHONY : mk-tsp/fast
+tmk-tsp/fast:
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/build
+.PHONY : tmk-tsp/fast
 
 src/coords.o: src/coords.cc.o
 
@@ -188,7 +188,7 @@ src/coords.o: src/coords.cc.o
 
 # target to build an object file
 src/coords.cc.o:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/coords.cc.o
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/coords.cc.o
 .PHONY : src/coords.cc.o
 
 src/coords.i: src/coords.cc.i
@@ -197,7 +197,7 @@ src/coords.i: src/coords.cc.i
 
 # target to preprocess a source file
 src/coords.cc.i:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/coords.cc.i
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/coords.cc.i
 .PHONY : src/coords.cc.i
 
 src/coords.s: src/coords.cc.s
@@ -206,35 +206,8 @@ src/coords.s: src/coords.cc.s
 
 # target to generate assembly for a file
 src/coords.cc.s:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/coords.cc.s
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/coords.cc.s
 .PHONY : src/coords.cc.s
-
-src/mk-tsp.o: src/mk-tsp.cc.o
-
-.PHONY : src/mk-tsp.o
-
-# target to build an object file
-src/mk-tsp.cc.o:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/mk-tsp.cc.o
-.PHONY : src/mk-tsp.cc.o
-
-src/mk-tsp.i: src/mk-tsp.cc.i
-
-.PHONY : src/mk-tsp.i
-
-# target to preprocess a source file
-src/mk-tsp.cc.i:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/mk-tsp.cc.i
-.PHONY : src/mk-tsp.cc.i
-
-src/mk-tsp.s: src/mk-tsp.cc.s
-
-.PHONY : src/mk-tsp.s
-
-# target to generate assembly for a file
-src/mk-tsp.cc.s:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/mk-tsp.cc.s
-.PHONY : src/mk-tsp.cc.s
 
 src/mkgreed.o: src/mkgreed.cc.o
 
@@ -242,7 +215,7 @@ src/mkgreed.o: src/mkgreed.cc.o
 
 # target to build an object file
 src/mkgreed.cc.o:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/mkgreed.cc.o
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/mkgreed.cc.o
 .PHONY : src/mkgreed.cc.o
 
 src/mkgreed.i: src/mkgreed.cc.i
@@ -251,7 +224,7 @@ src/mkgreed.i: src/mkgreed.cc.i
 
 # target to preprocess a source file
 src/mkgreed.cc.i:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/mkgreed.cc.i
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/mkgreed.cc.i
 .PHONY : src/mkgreed.cc.i
 
 src/mkgreed.s: src/mkgreed.cc.s
@@ -260,7 +233,7 @@ src/mkgreed.s: src/mkgreed.cc.s
 
 # target to generate assembly for a file
 src/mkgreed.cc.s:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/mkgreed.cc.s
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/mkgreed.cc.s
 .PHONY : src/mkgreed.cc.s
 
 src/route_path_utils.o: src/route_path_utils.cc.o
@@ -269,7 +242,7 @@ src/route_path_utils.o: src/route_path_utils.cc.o
 
 # target to build an object file
 src/route_path_utils.cc.o:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/route_path_utils.cc.o
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/route_path_utils.cc.o
 .PHONY : src/route_path_utils.cc.o
 
 src/route_path_utils.i: src/route_path_utils.cc.i
@@ -278,7 +251,7 @@ src/route_path_utils.i: src/route_path_utils.cc.i
 
 # target to preprocess a source file
 src/route_path_utils.cc.i:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/route_path_utils.cc.i
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/route_path_utils.cc.i
 .PHONY : src/route_path_utils.cc.i
 
 src/route_path_utils.s: src/route_path_utils.cc.s
@@ -287,8 +260,35 @@ src/route_path_utils.s: src/route_path_utils.cc.s
 
 # target to generate assembly for a file
 src/route_path_utils.cc.s:
-	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/mk-tsp.dir/build.make mk-tsp/CMakeFiles/mk-tsp.dir/src/route_path_utils.cc.s
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/route_path_utils.cc.s
 .PHONY : src/route_path_utils.cc.s
+
+src/tmk-tsp.o: src/tmk-tsp.cc.o
+
+.PHONY : src/tmk-tsp.o
+
+# target to build an object file
+src/tmk-tsp.cc.o:
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/tmk-tsp.cc.o
+.PHONY : src/tmk-tsp.cc.o
+
+src/tmk-tsp.i: src/tmk-tsp.cc.i
+
+.PHONY : src/tmk-tsp.i
+
+# target to preprocess a source file
+src/tmk-tsp.cc.i:
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/tmk-tsp.cc.i
+.PHONY : src/tmk-tsp.cc.i
+
+src/tmk-tsp.s: src/tmk-tsp.cc.s
+
+.PHONY : src/tmk-tsp.s
+
+# target to generate assembly for a file
+src/tmk-tsp.cc.s:
+	cd /home/fnekovar/git/gsoa/build && $(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/src/tmk-tsp.cc.s
+.PHONY : src/tmk-tsp.cc.s
 
 # Help Target
 help:
@@ -299,23 +299,23 @@ help:
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... test"
-	@echo "... mk-tsp"
 	@echo "... list_install_components"
-	@echo "... edit_cache"
+	@echo "... tmk-tsp"
 	@echo "... rebuild_cache"
+	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... src/coords.o"
 	@echo "... src/coords.i"
 	@echo "... src/coords.s"
-	@echo "... src/mk-tsp.o"
-	@echo "... src/mk-tsp.i"
-	@echo "... src/mk-tsp.s"
 	@echo "... src/mkgreed.o"
 	@echo "... src/mkgreed.i"
 	@echo "... src/mkgreed.s"
 	@echo "... src/route_path_utils.o"
 	@echo "... src/route_path_utils.i"
 	@echo "... src/route_path_utils.s"
+	@echo "... src/tmk-tsp.o"
+	@echo "... src/tmk-tsp.i"
+	@echo "... src/tmk-tsp.s"
 .PHONY : help
 
 

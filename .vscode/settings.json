@@ -71,6 +71,11 @@
         "queue": "cpp",
         "stack": "cpp",
         "deque": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "csignal": "cpp",
+        "complex": "cpp",
+        "ratio": "cpp",
+        "cfenv": "cpp",
+        "typeindex": "cpp"
     }
 }

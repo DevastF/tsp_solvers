@@ -29,6 +29,12 @@ struct Coords {
       return *this;
    }
 
+   bool operator==(const Coords &other) const { // const-methode
+      if(x == other.x && y == other.y)
+         return true;
+      return false;
+   }
+
    inline double squared_distance(const Coords  &c) const {
       return squared_distance(*this, c);
    }

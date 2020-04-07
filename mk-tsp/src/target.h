@@ -15,10 +15,10 @@ namespace mkgreed {
    struct STarget {
       const int label;
       const Coords coords;
-      Agent* visitedBy;
+      bool visited;
 
-      STarget(const int id, const Coords pt) : label(id), coords(pt), visitedBy(nullptr) {}
-      STarget(const int id, const Coords pt, Agent* vs) : label(id), coords(pt), visitedBy(vs) {}
+      STarget(const int id, const Coords pt) : label(id), coords(pt), visited(false) {}
+      STarget(const int id, const Coords pt, bool vs) : label(id), coords(pt), visited(vs) {}
    };
 
    typedef std::vector<STarget*> TargetPtrVector;

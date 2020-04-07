@@ -25,6 +25,8 @@ double get_path_length(const CoordsVector &pts, bool closed = true);
 /// ----------------------------------------------------------------------------
 void two_opt(CoordsVector &path);
 
+double get_solution_length(const CoordsVectorVector &pts, bool closed = true);
+
 #endif
 
 /* end of route_path_utils.h */

@@ -17,11 +17,11 @@ LDFLAGS+=$(CRL-ALGORITHM) $(CRL-GUI_LDFLAGS) $(CRL_LDFLAGS) $(CAIRO_LDFLAGS) $(B
 CXXFLAGS+=-O2 -march=native
 
 OBJS=\
-     mk-tsp.o\
+     tmk-tsp.o\
      mkgreed.o\
      route_path_utils.o\
      coords.o\
 
-TARGET=mk-tsp
+TARGET=tmk-tsp
 
 include Mk/comrob.mk

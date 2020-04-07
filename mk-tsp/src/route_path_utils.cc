@@ -11,6 +11,10 @@
 /// - function -----------------------------------------------------------------
 double get_path_length(const CoordsVector &pts, bool closed)
 {
+   if(pts.size() < 2){
+      return 0;
+   }
+
    double len = 0.;
    for (int i = 1; i < pts.size(); ++i) {
       len += sqrt(pts[i-1].squared_distance(pts[i]));
@@ -19,6 +23,24 @@ double get_path_length(const CoordsVector &pts, bool closed)
       len += sqrt(pts.back().squared_distance(pts.front()));
    }
    return len;
+}
+
+/// - function -----------------------------------------------------------------
+double get_solution_length(const CoordsVectorVector &pts, bool closed)
+{
+   double cost = 0;
+   double totalCost = 0;
+   double maxLength = 0;
+   for(int i = 0; i < pts.size(); ++i)
+   {
+      cost = get_path_length(pts.at(i));
+      if(cost > maxLength)
+      {
+         maxLength = cost;
+      }
+      totalCost = totalCost + get_path_length(pts.at(i));
+   }
+   return totalCost + maxLength;
 }
 
 #define dist(i, j) sqrt(path[i].squared_distance(path[j]))

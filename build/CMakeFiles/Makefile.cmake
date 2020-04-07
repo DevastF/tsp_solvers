@@ -155,5 +155,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "crl/crl.tsplib/CMakeFiles/crl-tsplib.dir/DependInfo.cmake"
   "gsoa-etsp/CMakeFiles/tgsoa-etsp.dir/DependInfo.cmake"
   "gsoa-cetsp/CMakeFiles/tgsoa-cetsp.dir/DependInfo.cmake"
-  "mk-tsp/CMakeFiles/mk-tsp.dir/DependInfo.cmake"
+  "mk-tsp/CMakeFiles/tmk-tsp.dir/DependInfo.cmake"
   )

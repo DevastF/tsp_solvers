@@ -89,6 +89,14 @@ crl::CConfig& CMKGREED::getConfig(crl::CConfig &config)
    config.add<int>("k-nodes", "Number of nodes to explore", 10);
    config.add<int>("start-node-id", "Id of node where to begin search", 0);
 
+   config.add<int>("p1", "Weight p1", 1);
+   config.add<int>("p2", "Weight p2", 2);
+   config.add<int>("p3", "Weight p3", 3);
+   config.add<int>("R-t", "Number of iterations to reset scores", 20);
+   config.add<int>("size-neigborhood", "Size of solution neighborhood", 50);
+   config.add<int>("size-tabu-list", "Tabu list size", 50);
+   config.add<int>("tabu-iterations", "Maximum number of tabu search iterations", 100);
+
    return config;
 }
 
@@ -102,16 +110,24 @@ CMKGREED::CMKGREED(crl::CConfig &config) : Base(config, "TRIAL"),
    SAVE_PIC(config.get<bool>("save-pic")),
    m(config.get<int>("m-agents")),
    k(config.get<int>("k-nodes")),
-   startNode(config.get<int>("start-node-id"))
+   startNode(config.get<int>("start-node-id")),
+   p1(config.get<int>("p1")),
+   p2(config.get<int>("p2")),
+   p3(config.get<int>("p3")),
+   R_T(config.get<int>("R-t")),
+   sizeNeighborhood(config.get<int>("size-neigborhood")),
+   sizeTabuList(config.get<int>("size-tabu-list")),
+   tabuIterations(config.get<int>("tabu-iterations")),
+   g1Score(1),
+   g2Score(1),
+   g3Score(1)
 {
    shapeTargets.setShape(config.get<std::string>("draw-shape-targets"));
    shapePath.setShape(config.get<std::string>("draw-shape-path"));
    shapePathNodes.setShape(config.get<std::string>("draw-shape-path-nodes"));
    method = config.get<std::string>("method");
+ 
 
-   for(int i = 0; i < m; ++i){
-      agents.push_back(new Agent(agents.size()));
-   }
    const std::string fname = config.get<std::string>("problem");
    { // load problem
       std::ifstream in(fname);
@@ -121,11 +137,6 @@ CMKGREED::CMKGREED(crl::CConfig &config) : Base(config, "TRIAL"),
       }
    }
 
-   for(Agent *agent : agents)
-   {
-      agent->path.push_back(targets.at(startNode)->coords);
-      targets.at(startNode)->visitedBy = agent;
-   }
 
    if (name.size() == 0) {
       std::string n = getBasename(fname);
@@ -142,9 +153,6 @@ CMKGREED::~CMKGREED()
 {
    foreach(STarget *target, targets) {
       delete target;
-   }
-   foreach(Agent *agent, agents) {
-      delete agent;
    }
 }
 
@@ -212,6 +220,8 @@ void CMKGREED::iterate(int iter)
    if (canvas) {
       *canvas << canvas::CLEAR << "path" << "path";
    }
+
+   
    
    int step = 0;
 
@@ -224,8 +234,16 @@ void CMKGREED::iterate(int iter)
    int bestInsertIndex;
    CoordsVector costCoords;
    Coords currentCoords;
+   
 
    std::string debug;
+
+   CoordsVectorVector currentSolution;
+   for(int i = 0; i < m; i++){
+      CoordsVector coordsVec;
+      coordsVec.push_back(targets.at(startNode)->coords);
+      currentSolution.push_back(coordsVec);
+   }
 
    // initial search in close neighborhood
 
@@ -233,11 +251,11 @@ void CMKGREED::iterate(int iter)
       DEBUG("Greedy search step: " << step);
       bestSolutionLength = std::numeric_limits<double>::max();
       for(int i = 0; i < targets.size(); i++){
-         if(targets.at(i)->visitedBy == nullptr){
+         if(targets.at(i)->visited == false){
             currentCoords = targets.at(i)->coords;
-            for(int j = 0; j < agents.size(); j++){   
-               for(int k = 1; k <= agents.at(j)->path.size(); ++k){
-                  costCoords = agents.at(j)->path;
+            for(int j = 0; j < m; j++){   
+               for(int k = 1; k <= currentSolution.at(j).size(); k++){
+                  costCoords = currentSolution.at(j);
                   costCoords.insert(costCoords.begin()+k,currentCoords);
                   cost = get_path_length(costCoords);
                   if(cost < bestSolutionLength){
@@ -250,39 +268,26 @@ void CMKGREED::iterate(int iter)
             }
          }   
       }
-      targets.at(bestTarget)->visitedBy = agents.at(bestAgent);
-      agents.at(bestAgent)->path.insert(agents.at(bestAgent)->path.begin()+bestInsertIndex,targets.at(bestTarget)->coords);
+      
+      targets.at(bestTarget)->visited = true;
+      currentSolution.at(bestAgent).insert(currentSolution.at(bestAgent).begin()+bestInsertIndex,targets.at(bestTarget)->coords);
+      if(step >= 10 && step % 10 == 0)
+      {
+         for(int i = 0; i < m; i++){
+         DEBUG(currentSolution.at(i).size());
+         }
+
+         DEBUG("Initializing tabusearch");
+         currentSolution = getTSSolution(currentSolution, step);
+      }
       step++;
    }
 
-
+   //DEBUG("Initial greedy cost (longest route): "<<get_solution_length(finalSolution));
+   finalSolution = getTSSolution(currentSolution, step);
+   DEBUG("Final cost (longest route): "<<get_solution_length(finalSolution));
 
    tSolve.stop();
-
-  /* double length;
-   if (BEST_SOLUTION) {
-      finalSolution = bestSolution;
-      length = bestSolutionLength;
-      finalBestSolutionStep = bestSolutionStep;
-   } else {
-      getSolution(step - 1, finalSolution); //collect solution
-      length = get_path_length(finalSolution);
-      finalBestSolutionStep = step - 1;
-   }
-
-   if (config.get<bool>("2opt-post")) {
-      two_opt(finalSolution);
-      double twoOptLength = get_path_length(finalSolution);
-      DEBUG("Length: " << length << " after 2opt: " << twoOptLength);
-      length = twoOptLength;
-   }
-   fillResultRecord(iter);*/
-   /*resultLog
-     // << length // 
-      << step
-      //<< finalBestSolutionStep
-      << crl::result::endrec;*/
-   //DEBUG("Best solution with the length: " << bestSolutionLength << " found in: " << bestSolutionStep << " steps");
 }
 
 /// - protected method ---------------------------------------------------------
@@ -335,8 +340,8 @@ void CMKGREED::save(void)
       std::ofstream ofs(ss.str());
       assert_io(not ofs.fail(), "Cannot create path '" + ss.str() + "'");
       ofs << std::setprecision(14);
-      foreach(const Agent* agent, agents){
-         foreach(const Coords pt, agent->path) {
+      for(int i = 0; i < m; i++){
+         foreach(const Coords pt, finalSolution.at(i)) {
          ofs << pt.x << " " << pt.y << ", ";
          }
          ofs << std::endl;
@@ -394,11 +399,20 @@ void CMKGREED::fillResultRecord(int trial)
 /// - private method -----------------------------------------------------------
 void CMKGREED::drawPath(void)
 {
-   CoordsVector path;
+   /*CoordsVector path;
    foreach(Agent* agent, agents){
       foreach(Coords coords, agent->path){
          path.push_back(coords);
       }    
+   }*/
+   CoordsVector path;
+   for(int i = 0; i < m; i++)
+   {
+      for(int j = 0; j < finalSolution.at(i).size(); j++)
+      {
+         DEBUG("Drawing path "<<i<<" of size "<<finalSolution.at(i).size()+" "<<finalSolution.at(i).at(j).x<<" "<<finalSolution.at(i).at(j).y);
+         path.push_back(finalSolution.at(i).at(j));
+      }
    }
 
    if (canvas) {
@@ -470,10 +484,194 @@ void CMKGREED::savePic(int step, bool detail, const std::string &dir_suffix)
    i++;
 }
 
-/// - private method -----------------------------------------------------------
-void CMKGREED::getSolution(int step, CoordsVectorVector &solution) const
+CoordsVectorVector CMKGREED::getTSSolution(CoordsVectorVector& prevSol, int nodes)
 {
-   //ring->get_ring_path(step, solution);
+   int totalScore;
+   int random;
+   CoordsVectorVector tabuSolution;
+   std::list<CoordsVectorVector> tabuList;
+   double bestSolutionLength = get_solution_length(prevSol);
+   DEBUG("Initial tabu score is "<<bestSolutionLength);
+   int tabuIterationsDynamic = 10*nodes;
+   int bestGroup = 0;
+   double bestNeighborhoodLength;
+   double tabuSolutionLength;
+   CoordsVectorVector bestNeigborhoodSolution = prevSol;
+   tabuList.push_back(prevSol);
+   
+   for(int iteration = 0; iteration < tabuIterationsDynamic; iteration++)
+   {
+      
+      bestNeighborhoodLength = std::numeric_limits<double>::max();
+
+      // reinitialize score each R_t iterations
+      if(iteration % R_T == 0)
+      {
+         g1Score = 1;
+         g2Score = 1;
+         g3Score = 1;
+      }
+
+      // search solution neigborhood
+      for(int j = 0; j < nodes*m; j++)
+      {
+         //DEBUG("Neigborhood iteration "<<j);
+         tabuSolution = bestNeigborhoodSolution;
+         totalScore = g1Score+g2Score+g3Score;
+         random = (std::rand() % totalScore);
+         if (random < g1Score){
+            getG1Solution(tabuSolution);
+         }else if (random < (g1Score+g2Score)){
+            getG2Solution(tabuSolution);
+         }else{
+            getG3Solution(tabuSolution);
+         }
+         tabuSolutionLength = get_solution_length(tabuSolution);
+         if(tabuSolutionLength < bestNeighborhoodLength && std::find(tabuList.begin(),tabuList.end(),tabuSolution) == tabuList.end())
+         {
+            bestNeighborhoodLength = tabuSolutionLength;
+            bestNeigborhoodSolution = tabuSolution;
+            bestGroup = random;
+         }
+      }
+      if(bestNeighborhoodLength < std::numeric_limits<double>::max())
+      {
+         if(tabuList.size() >= sizeTabuList){
+               tabuList.pop_front();
+            }
+         tabuList.push_back(bestNeigborhoodSolution);
+
+         if (bestGroup < g1Score){
+            g1Score = g1Score + p1;
+         }else if (bestGroup < (g1Score+g2Score)){
+            g2Score = g2Score + p1;
+         }else{
+            g3Score = g3Score + p1;
+         }
+
+         if(bestNeighborhoodLength < bestSolutionLength)
+         {
+            finalSolution = bestNeigborhoodSolution;
+            bestSolutionLength = bestNeighborhoodLength;
+
+            if (random < g1Score){
+               g1Score = g1Score + p2;
+            }else if (random < (g1Score+g2Score)){
+               g2Score = g2Score + p2;
+            }else{
+               g3Score = g3Score + p2;
+            }
+         }
+      }else{
+      }
+   }
+   DEBUG("Final tabu score is "<<bestSolutionLength);
+   return finalSolution;
+}
+void CMKGREED::getG1Solution(CoordsVectorVector& prevSol) // random shift intra-inter route
+{
+   //DEBUG("G1 invoked");
+   int indexA1 = std::rand() % m;
+   while(prevSol.at(indexA1).size() < 3)
+   {
+      indexA1 = std::rand() % m;
+   }
+   int indexC1 = std::rand() % ((prevSol.at(indexA1).size()-1)) + 1;
+
+
+   Coords movedCoord = prevSol.at(indexA1).at(indexC1);
+   prevSol.at(indexA1).erase(prevSol.at(indexA1).begin()+indexC1);
+
+
+   if (std::rand() % 2 < 1){ // shift intra route
+      int indexC2 = (std::rand() % (prevSol.at(indexA1).size())) + 1;
+      while(indexC1 == indexC2){
+         indexC2 = (std::rand() % (prevSol.at(indexA1).size())) + 1;
+      }
+      prevSol.at(indexA1).insert(prevSol.at(indexA1).begin()+indexC2, movedCoord);
+   }else{ // shift inter route
+      int indexA2 = std::rand() % m;
+      while(indexA1 == indexA2){
+         indexA2 = std::rand() % m;
+      }
+      int indexC2 = (std::rand() % (prevSol.at(indexA2).size())) + 1;
+      prevSol.at(indexA2).insert(prevSol.at(indexA2).begin()+indexC2, movedCoord);
+   }
+}
+void CMKGREED::getG2Solution(CoordsVectorVector& prevSol) // best shift intra-inter route based on exhaustive search
+{
+   //DEBUG("G2 invoked");
+   int indexA1 = std::rand() % m;
+   while(prevSol.at(indexA1).size() < 3)
+   {
+      indexA1 = std::rand() % m;
+   }
+   int indexC1 = (std::rand() % (prevSol.at(indexA1).size()-1)) + 1;
+   Coords movedCoord = prevSol.at(indexA1).at(indexC1);
+   prevSol.at(indexA1).erase(prevSol.at(indexA1).begin()+indexC1);
+
+   double bestSolutionLength = std::numeric_limits<double>::max();
+   double solutionLength;
+
+   CoordsVectorVector intermediateSolution = prevSol;
+
+   for(int i = 0; i < m; i++)
+   {
+      for(int j = 1; j <= prevSol.at(i).size(); j++)
+      {
+         if(!((i == indexA1) && (j == indexC1)))
+         {
+            intermediateSolution.at(i).insert(intermediateSolution.at(i).begin()+j,movedCoord);
+            solutionLength = get_solution_length(intermediateSolution);
+            if(solutionLength < bestSolutionLength)
+            {
+               indexA1 = i;
+               indexC1 = j;
+               bestSolutionLength = solutionLength;
+            }
+            intermediateSolution = prevSol;
+         }
+      }
+   }
+   prevSol.at(indexA1).insert(prevSol.at(indexA1).begin()+indexC1, movedCoord);
+}
+void CMKGREED::getG3Solution(CoordsVectorVector& prevSol) // best swapt intra-inter route based on exhaustive search
+{
+   //DEBUG("G3 invoked");
+   int indexA1 = std::rand() % m;
+   while(prevSol.at(indexA1).size() < 3)
+   {
+      indexA1 = std::rand() % m;
+   }
+   int indexC1 = (std::rand() % (prevSol.at(indexA1).size()-1)+1);
+   int indexA2;
+   int indexC2;
+   Coords movedCoord = prevSol.at(indexA1).at(indexC1);
+
+   double bestSolutionLength = std::numeric_limits<double>::max();
+   double solutionLength;
+
+   CoordsVectorVector intermediateSolution = prevSol;
+
+   for(int i = 0; i < m; i++)
+   {
+      for(int j = 1; j < prevSol.at(i).size(); j++)
+      {
+         if(!((i == indexA1) && (j == indexC1)))
+         {
+            std::swap(intermediateSolution[indexA1][indexC1],intermediateSolution[i][j]);
+            solutionLength = get_solution_length(intermediateSolution);
+            if(solutionLength < bestSolutionLength)
+            {
+               indexA2 = i;
+               indexC2 = j;
+               bestSolutionLength = solutionLength;
+            }
+            intermediateSolution = prevSol;
+         }
+      }
+   }
+   std::swap(prevSol[indexA1][indexC1],prevSol[indexA2][indexC2]);
 }
 
 /* end of mkgreed.cc */

@@ -49,8 +49,11 @@ namespace mkgreed {
       void drawPath(void);
       void drawRing(int step);
       void savePic(int step, bool detail = false, const std::string &dir_suffix = "");
-
-      void getSolution(int step, CoordsVectorVector &solution) const;
+      
+      CoordsVectorVector getTSSolution(CoordsVectorVector& prevSol, int nodes);
+      void getG1Solution(CoordsVectorVector& prevSol);
+      void getG2Solution(CoordsVectorVector& prevSol);
+      void getG3Solution(CoordsVectorVector& prevSol);
 
       private:
       const bool SAVE_RESULTS;
@@ -72,9 +75,22 @@ namespace mkgreed {
       const int startNode;
       
       TargetPtrVector targets;
-      AgentsPtrVector agents;
-      CoordsVectorVector currentSolution;
       CoordsVectorVector finalSolution;
+
+      int g1Score;
+      int g2Score;
+      int g3Score;
+
+
+      const int p1; // best group solution
+      const int p2; // best tabu solution
+      const int p3; // best grasp solution
+      const int R_T;
+      const int sizeNeighborhood;
+      const int sizeTabuList;
+      const int tabuIterations;
+      CoordsVectorVector neighborhood;
+
    };
 
 } // end name gsoa

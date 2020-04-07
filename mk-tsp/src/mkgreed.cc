@@ -96,6 +96,7 @@ crl::CConfig& CMKGREED::getConfig(crl::CConfig &config)
    config.add<int>("size-neigborhood", "Size of solution neighborhood", 50);
    config.add<int>("size-tabu-list", "Tabu list size", 50);
    config.add<int>("tabu-iterations", "Maximum number of tabu search iterations", 100);
+   config.add<int>("tabu-period", "After how many nodes to do TabuSerach", 20);
 
    return config;
 }
@@ -118,9 +119,7 @@ CMKGREED::CMKGREED(crl::CConfig &config) : Base(config, "TRIAL"),
    sizeNeighborhood(config.get<int>("size-neigborhood")),
    sizeTabuList(config.get<int>("size-tabu-list")),
    tabuIterations(config.get<int>("tabu-iterations")),
-   g1Score(1),
-   g2Score(1),
-   g3Score(1)
+   tabuPeriod(config.get<int>("tabu-period"))
 {
    shapeTargets.setShape(config.get<std::string>("draw-shape-targets"));
    shapePath.setShape(config.get<std::string>("draw-shape-path"));
@@ -271,13 +270,11 @@ void CMKGREED::iterate(int iter)
       
       targets.at(bestTarget)->visited = true;
       currentSolution.at(bestAgent).insert(currentSolution.at(bestAgent).begin()+bestInsertIndex,targets.at(bestTarget)->coords);
-      if(step >= 10 && step % 10 == 0)
+      if(step >= tabuPeriod && step % tabuPeriod == 0)
       {
-         for(int i = 0; i < m; i++){
+         /*for(int i = 0; i < m; i++){
          DEBUG(currentSolution.at(i).size());
-         }
-
-         DEBUG("Initializing tabusearch");
+         }*/
          currentSolution = getTSSolution(currentSolution, step);
       }
       step++;
@@ -285,7 +282,7 @@ void CMKGREED::iterate(int iter)
 
    //DEBUG("Initial greedy cost (longest route): "<<get_solution_length(finalSolution));
    finalSolution = getTSSolution(currentSolution, step);
-   DEBUG("Final cost (longest route): "<<get_solution_length(finalSolution));
+   DEBUG("Final cost: "<<get_solution_length(finalSolution));
 
    tSolve.stop();
 }
@@ -410,7 +407,7 @@ void CMKGREED::drawPath(void)
    {
       for(int j = 0; j < finalSolution.at(i).size(); j++)
       {
-         DEBUG("Drawing path "<<i<<" of size "<<finalSolution.at(i).size()+" "<<finalSolution.at(i).at(j).x<<" "<<finalSolution.at(i).at(j).y);
+         //DEBUG("Drawing path "<<i<<" of size "<<finalSolution.at(i).size()+" "<<finalSolution.at(i).at(j).x<<" "<<finalSolution.at(i).at(j).y);
          path.push_back(finalSolution.at(i).at(j));
       }
    }
@@ -576,7 +573,7 @@ void CMKGREED::getG1Solution(CoordsVectorVector& prevSol) // random shift intra-
    {
       indexA1 = std::rand() % m;
    }
-   int indexC1 = std::rand() % ((prevSol.at(indexA1).size()-1)) + 1;
+   int indexC1 = (std::rand() % (prevSol.at(indexA1).size()-1)) + 1;
 
 
    Coords movedCoord = prevSol.at(indexA1).at(indexC1);

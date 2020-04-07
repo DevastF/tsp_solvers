@@ -89,6 +89,7 @@ namespace mkgreed {
       const int sizeNeighborhood;
       const int sizeTabuList;
       const int tabuIterations;
+      const int tabuPeriod;
       CoordsVectorVector neighborhood;
 
    };

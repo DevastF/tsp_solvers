@@ -240,7 +240,7 @@ void CMKGREED::iterate(int iter)
 
    int random;
 
-   std::vector<Insertion*> possibleInsertions;
+   std::set<Insertion*, InsComp> possibleInsertions;
    Insertion* chosenInsertion;
 
    std::string debug;
@@ -285,7 +285,7 @@ void CMKGREED::iterate(int iter)
                   costCoords = currentSolution.at(j);
                   costCoords.insert(costCoords.begin()+k,currentCoords);
                   cost = get_path_length(costCoords);    
-                  possibleInsertions.push_back(new Insertion(cost, i, j, k));
+                  possibleInsertions.insert(new Insertion(cost, i, j, k));
                }
             }
          }
@@ -293,12 +293,12 @@ void CMKGREED::iterate(int iter)
 
       random = std::rand() % sizeRCL;
       while(random >= possibleInsertions.size()){ random--;}
-      chosenInsertion = possibleInsertions.at(random);
+      chosenInsertion = *std::next(possibleInsertions.begin(), random);
       bestTarget = chosenInsertion->Target;
       bestAgent = chosenInsertion->Agent;
       bestInsertIndex = chosenInsertion->InsertIndex;
 
-      for (std::vector<Insertion*>::iterator ins = possibleInsertions.begin(); ins != possibleInsertions.end(); ++ins) {
+      for (std::set<Insertion*>::iterator ins = possibleInsertions.begin(); ins != possibleInsertions.end(); ++ins) {
          delete *ins;
       }
       possibleInsertions.clear();

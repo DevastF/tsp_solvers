@@ -80,12 +80,14 @@ namespace mkgreed {
       int g1Score;
       int g2Score;
       int g3Score;
+      int R_T_iterator;
 
 
       const int p1; // best group solution
       const int p2; // best tabu solution
       const int p3; // best grasp solution
       const int R_T;
+      const int sizeRCL;
       const int sizeNeighborhood;
       const int sizeTabuList;
       const int tabuIterations;

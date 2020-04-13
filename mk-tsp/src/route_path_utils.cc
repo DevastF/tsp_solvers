@@ -38,9 +38,9 @@ double get_solution_length(const CoordsVectorVector &pts, bool closed)
       {
          maxLength = cost;
       }
-      totalCost = totalCost + get_path_length(pts.at(i));
+      totalCost = totalCost + cost;
    }
-   return totalCost + maxLength;
+   return totalCost + maxLength*100;
 }
 
 #define dist(i, j) sqrt(path[i].squared_distance(path[j]))

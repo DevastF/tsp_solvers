@@ -18,6 +18,8 @@
 
 #include "mkgreed.h"
 
+#include "insertion.h"
+
 #include "route_path_utils.h"
 
 #include "canvasview_coords.h"
@@ -97,6 +99,7 @@ crl::CConfig& CMKGREED::getConfig(crl::CConfig &config)
    config.add<int>("size-tabu-list", "Tabu list size", 50);
    config.add<int>("tabu-iterations", "Maximum number of tabu search iterations", 100);
    config.add<int>("tabu-period", "After how many nodes to do TabuSerach", 20);
+   config.add<int>("size-rcl", "Size of resctricted candidate list", 5);
 
    return config;
 }
@@ -119,7 +122,8 @@ CMKGREED::CMKGREED(crl::CConfig &config) : Base(config, "TRIAL"),
    sizeNeighborhood(config.get<int>("size-neigborhood")),
    sizeTabuList(config.get<int>("size-tabu-list")),
    tabuIterations(config.get<int>("tabu-iterations")),
-   tabuPeriod(config.get<int>("tabu-period"))
+   tabuPeriod(config.get<int>("tabu-period")),
+   sizeRCL(config.get<int>("size-rcl"))
 {
    shapeTargets.setShape(config.get<std::string>("draw-shape-targets"));
    shapePath.setShape(config.get<std::string>("draw-shape-path"));
@@ -220,7 +224,7 @@ void CMKGREED::iterate(int iter)
       *canvas << canvas::CLEAR << "path" << "path";
    }
 
-   
+   R_T_iterator = 0;
    
    int step = 0;
 
@@ -233,7 +237,11 @@ void CMKGREED::iterate(int iter)
    int bestInsertIndex;
    CoordsVector costCoords;
    Coords currentCoords;
-   
+
+   int random;
+
+   std::vector<Insertion*> possibleInsertions;
+   Insertion* chosenInsertion;
 
    std::string debug;
 
@@ -247,7 +255,7 @@ void CMKGREED::iterate(int iter)
    // initial search in close neighborhood
 
    while ((step < k) && not term) {
-      DEBUG("Greedy search step: " << step);
+      /*DEBUG("Greedy search step: " << step);
       bestSolutionLength = std::numeric_limits<double>::max();
       for(int i = 0; i < targets.size(); i++){
          if(targets.at(i)->visited == false){
@@ -266,54 +274,49 @@ void CMKGREED::iterate(int iter)
                }
             }
          }   
+      }*/
+
+      DEBUG("Greedy Random search step: " << step);
+      for(int i = 0; i < targets.size(); i++){
+         if(targets.at(i)->visited == false){
+            currentCoords = targets.at(i)->coords;
+            for(int j = 0; j < m; j++){   
+               for(int k = 1; k <= currentSolution.at(j).size(); k++){
+                  costCoords = currentSolution.at(j);
+                  costCoords.insert(costCoords.begin()+k,currentCoords);
+                  cost = get_path_length(costCoords);    
+                  possibleInsertions.push_back(new Insertion(cost, i, j, k));
+               }
+            }
+         }
+      }   
+
+      random = std::rand() % sizeRCL;
+      while(random >= possibleInsertions.size()){ random--;}
+      chosenInsertion = possibleInsertions.at(random);
+      bestTarget = chosenInsertion->Target;
+      bestAgent = chosenInsertion->Agent;
+      bestInsertIndex = chosenInsertion->InsertIndex;
+
+      for (std::vector<Insertion*>::iterator ins = possibleInsertions.begin(); ins != possibleInsertions.end(); ++ins) {
+         delete *ins;
       }
-      
+      possibleInsertions.clear();
+
       targets.at(bestTarget)->visited = true;
       currentSolution.at(bestAgent).insert(currentSolution.at(bestAgent).begin()+bestInsertIndex,targets.at(bestTarget)->coords);
+
       if(step >= tabuPeriod && step % tabuPeriod == 0)
       {
-         /*for(int i = 0; i < m; i++){
-         DEBUG(currentSolution.at(i).size());
-         }*/
          currentSolution = getTSSolution(currentSolution, step);
       }
       step++;
    }
 
-   //DEBUG("Initial greedy cost (longest route): "<<get_solution_length(finalSolution));
    finalSolution = getTSSolution(currentSolution, step);
    DEBUG("Final cost: "<<get_solution_length(finalSolution));
 
    tSolve.stop();
-}
-
-/// - protected method ---------------------------------------------------------
-double CMKGREED::refine(int step, double errorMax)
-{
-   double errorToGoal = errorMax;
-   double error = 0.0;
-   /*permute(permutation);
-   schema->updateExp(targets.size(), step);
-   for (IntVector::iterator i = permutation.begin(); i != permutation.end(); i++) {
-      STarget *target = targets[*i];
-      SNeuron *prevWinner = target->stepWinnerSelected == step - 1 ? target->selectedWinner : 0;
-      int r = 0;
-      SWinnerSelection* winner = ring->selectWinner(step, target, errorToGoal);
-      if (winner and winner->hasWinner) {
-         ring->adapt(step); 
-         if (error < errorToGoal) {
-            error = errorToGoal; //update error
-         }
-      }
-   } //end permutation of all targets
-   ring->regenerate(step);
-   if (canvas and DRAW_RING_ITER) {
-      drawRing(step);
-      if (SAVE_PIC) {
-         savePic(step, true);
-      }
-   }*/
-   return error; // return largest error to city
 }
 
 /// - protected method ---------------------------------------------------------
@@ -502,17 +505,17 @@ CoordsVectorVector CMKGREED::getTSSolution(CoordsVectorVector& prevSol, int node
       bestNeighborhoodLength = std::numeric_limits<double>::max();
 
       // reinitialize score each R_t iterations
-      if(iteration % R_T == 0)
+      if(++R_T_iterator >= R_T)
       {
          g1Score = 1;
          g2Score = 1;
          g3Score = 1;
+         R_T_iterator = 0;
       }
 
       // search solution neigborhood
       for(int j = 0; j < nodes*m; j++)
       {
-         //DEBUG("Neigborhood iteration "<<j);
          tabuSolution = bestNeigborhoodSolution;
          totalScore = g1Score+g2Score+g3Score;
          random = (std::rand() % totalScore);
@@ -560,6 +563,7 @@ CoordsVectorVector CMKGREED::getTSSolution(CoordsVectorVector& prevSol, int node
             }
          }
       }else{
+         DEBUG("Current tabu iteration didnt improve score. No possible moves?");
       }
    }
    DEBUG("Final tabu score is "<<bestSolutionLength);

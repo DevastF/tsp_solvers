@@ -1,0 +1,2 @@
+ccache /usr/bin/ar qc libcrl-loader.a  CMakeFiles/crl-loader.dir/src/distances_module.cc.o CMakeFiles/crl-loader.dir/src/graph_module.cc.o CMakeFiles/crl-loader.dir/src/loader_types.cc.o CMakeFiles/crl-loader.dir/src/map_partition_module.cc.o CMakeFiles/crl-loader.dir/src/route_module.cc.o CMakeFiles/crl-loader.dir/src/text_format_loader.cc.o CMakeFiles/crl-loader.dir/src/text_stream.cc.o
+ccache /usr/bin/ranlib libcrl-loader.a

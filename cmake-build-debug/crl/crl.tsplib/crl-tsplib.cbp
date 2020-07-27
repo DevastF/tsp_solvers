@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="crl-tsplib"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\crl\;CMake Files\crl\cmake\;CMake Files\crl\crl\;CMake Files\crl\crl.gui\;CMake Files\crl\crl.algorithm\;CMake Files\crl\crl.loader\;CMake Files\crl\crl.tsplib\;CMake Files\mk-tsp\;CMake Files\mtspc\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crl-tsplib">
+				<Option output="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/libcrl-tsplib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/include/crl.core"/>
+					<Add directory="/usr/include/cairo"/>
+					<Add directory="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 crl-tsplib"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crl-tsplib/fast">
+				<Option output="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/libcrl-tsplib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/include/crl.core"/>
+					<Add directory="/usr/include/cairo"/>
+					<Add directory="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 crl-tsplib/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tsploader">
+				<Option output="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/tsploader" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/include/crl.core"/>
+					<Add directory="/usr/include/cairo"/>
+					<Add directory="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 tsploader"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tsploader/fast">
+				<Option output="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/tsploader" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/include/crl.core"/>
+					<Add directory="/usr/include/cairo"/>
+					<Add directory="/home/mrs/git/tsp_solvers/cmake-build-debug/crl/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 tsploader/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/mrs/git/tsp_solvers/cmake-build-debug/crl/crl.tsplib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/loadertour.cc">
+			<Option target="crl-tsplib"/>
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/loadertour.h">
+			<Option target="crl-tsplib"/>
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/loadertsp.cc">
+			<Option target="crl-tsplib"/>
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/loadertsp.h">
+			<Option target="crl-tsplib"/>
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/tloader.cc">
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/tsplib.cc">
+			<Option target="crl-tsplib"/>
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/tsplib.h">
+			<Option target="crl-tsplib"/>
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/tsplibloader.cc">
+			<Option target="crl-tsplib"/>
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/tsplibloader.h">
+			<Option target="crl-tsplib"/>
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/tsplibspec.cc">
+			<Option target="crl-tsplib"/>
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/src/tsplibspec.h">
+			<Option target="crl-tsplib"/>
+			<Option target="tsploader"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/cmake/FindCairo.cmake">
+			<Option virtualFolder="CMake Files\crl\cmake\"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/cmake/FindLog4cxx.cmake">
+			<Option virtualFolder="CMake Files\crl\cmake\"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\crl\"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.gui/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\crl.gui\"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.algorithm/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\crl.algorithm\"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.loader/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\crl.loader\"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/crl/crl.tsplib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\crl.tsplib\"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/mk-tsp/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\mk-tsp\"/>
+		</Unit>
+		<Unit filename="/home/mrs/git/tsp_solvers/mtspc/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\mtspc\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

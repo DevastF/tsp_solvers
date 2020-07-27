@@ -1,0 +1,9 @@
+/snap/clion/121/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/mrs/git/tsp_solvers
+Compiling in the Debug mode
+Compiling in the Debug mode
+Boost libraries OK
+Cairo and X11 OK
+Crl found add gsoa-etsp and gsoa-cetsp
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/mrs/git/tsp_solvers/cmake-build-debug

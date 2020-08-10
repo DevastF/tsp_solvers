@@ -69,3 +69,11 @@
 /home/mrs/git/tsp_solvers/build/mtspc/CMakeFiles/edit_cache.dir
 /home/mrs/git/tsp_solvers/build/mtspc/CMakeFiles/rebuild_cache.dir
 /home/mrs/git/tsp_solvers/build/mtspc/CMakeFiles/install.dir
+/home/mrs/git/tsp_solvers/build/mgctsp/CMakeFiles/install/strip.dir
+/home/mrs/git/tsp_solvers/build/mgctsp/CMakeFiles/install/local.dir
+/home/mrs/git/tsp_solvers/build/mgctsp/CMakeFiles/test.dir
+/home/mrs/git/tsp_solvers/build/mgctsp/CMakeFiles/t_mgctsp.dir
+/home/mrs/git/tsp_solvers/build/mgctsp/CMakeFiles/list_install_components.dir
+/home/mrs/git/tsp_solvers/build/mgctsp/CMakeFiles/edit_cache.dir
+/home/mrs/git/tsp_solvers/build/mgctsp/CMakeFiles/rebuild_cache.dir
+/home/mrs/git/tsp_solvers/build/mgctsp/CMakeFiles/install.dir

@@ -1,0 +1,2 @@
+ccache /usr/bin/ar qc libcrl-tsplib.a  CMakeFiles/crl-tsplib.dir/src/loadertour.cc.o CMakeFiles/crl-tsplib.dir/src/loadertsp.cc.o CMakeFiles/crl-tsplib.dir/src/tsplib.cc.o CMakeFiles/crl-tsplib.dir/src/tsplibloader.cc.o CMakeFiles/crl-tsplib.dir/src/tsplibspec.cc.o
+ccache /usr/bin/ranlib libcrl-tsplib.a

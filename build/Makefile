@@ -271,6 +271,19 @@ t_mtspc/fast:
 	$(MAKE) -f mtspc/CMakeFiles/t_mtspc.dir/build.make mtspc/CMakeFiles/t_mtspc.dir/build
 .PHONY : t_mtspc/fast
 
+#=============================================================================
+# Target rules for targets named t_mgctsp
+
+# Build rule for target.
+t_mgctsp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 t_mgctsp
+.PHONY : t_mgctsp
+
+# fast build rule for target.
+t_mgctsp/fast:
+	$(MAKE) -f mgctsp/CMakeFiles/t_mgctsp.dir/build.make mgctsp/CMakeFiles/t_mgctsp.dir/build
+.PHONY : t_mgctsp/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -292,6 +305,7 @@ help:
 	@echo "... crl-tsplib"
 	@echo "... tmk-tsp"
 	@echo "... t_mtspc"
+	@echo "... t_mgctsp"
 .PHONY : help
 
 

@@ -7,7 +7,7 @@ else
    cmd=make 
 fi
 
-#export CXXFLAGS=-std=c++17
+export CXXFLAGS=-std=c++17
 
 rm -rf build
 

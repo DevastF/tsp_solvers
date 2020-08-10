@@ -42,6 +42,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/mrs/git/tsp_solvers/build/crl/cmake_install.cmake")
   include("/home/mrs/git/tsp_solvers/build/mk-tsp/cmake_install.cmake")
   include("/home/mrs/git/tsp_solvers/build/mtspc/cmake_install.cmake")
+  include("/home/mrs/git/tsp_solvers/build/mgctsp/cmake_install.cmake")
 
 endif()
 

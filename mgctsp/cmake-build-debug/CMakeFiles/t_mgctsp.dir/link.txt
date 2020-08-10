@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/t_mgctsp.dir/src/t_mgctsp.cc.o CMakeFiles/t_mgctsp.dir/home/mrs/CLionProjects/PowerlineTSP/src/coords.cc.o CMakeFiles/t_mgctsp.dir/src/grasp-constrained.cc.o  -o t_mgctsp  -lcrl-algorithm -lcrl-gui 

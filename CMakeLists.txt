@@ -12,7 +12,7 @@ else()
 endif()
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(CMAKE_CXX_STANDARD 11) #would use gnu++11
+set(CMAKE_CXX_STANDARD 17) #would use gnu++11
 
 find_program(CCACHE_FOUND ccache)
 if(CCACHE_FOUND)
@@ -25,9 +25,10 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/crl/cmake")
 enable_testing()
 add_subdirectory(crl)
 if(HAS_CRL)
-   message("Crl found add gsoa-etsp and gsoa-cetsp")
+   message("Crl found")
    find_package(X11)
    find_package(Log4cxx)
    add_subdirectory(mk-tsp)
    add_subdirectory(mtspc)
+   add_subdirectory(mgctsp)
 endif(HAS_CRL)

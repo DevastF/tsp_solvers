@@ -337,7 +337,7 @@ crl/crl.tsplib/CMakeFiles/tsploader.dir/all: crl/crl/CMakeFiles/crl.dir/all
 crl/crl.tsplib/CMakeFiles/tsploader.dir/all: crl/crl.gui/CMakeFiles/crl-gui.dir/all
 	$(MAKE) -f crl/crl.tsplib/CMakeFiles/tsploader.dir/build.make crl/crl.tsplib/CMakeFiles/tsploader.dir/depend
 	$(MAKE) -f crl/crl.tsplib/CMakeFiles/tsploader.dir/build.make crl/crl.tsplib/CMakeFiles/tsploader.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mrs/git/tsp_solvers/build/CMakeFiles --progress-num=67,68,69,70,71,72,73 "Built target tsploader"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mrs/git/tsp_solvers/build/CMakeFiles --progress-num=71,72,73,74,75,76,77 "Built target tsploader"
 .PHONY : crl/crl.tsplib/CMakeFiles/tsploader.dir/all
 
 # Include target in all.
@@ -431,7 +431,7 @@ mk-tsp/CMakeFiles/tmk-tsp.dir/all: crl/crl.gui/CMakeFiles/crl-gui.dir/all
 mk-tsp/CMakeFiles/tmk-tsp.dir/all: crl/crl.algorithm/CMakeFiles/crl-algorithm.dir/all
 	$(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/depend
 	$(MAKE) -f mk-tsp/CMakeFiles/tmk-tsp.dir/build.make mk-tsp/CMakeFiles/tmk-tsp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mrs/git/tsp_solvers/build/CMakeFiles --progress-num=62,63,64,65,66 "Built target tmk-tsp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mrs/git/tsp_solvers/build/CMakeFiles --progress-num=66,67,68,69,70 "Built target tmk-tsp"
 .PHONY : mk-tsp/CMakeFiles/tmk-tsp.dir/all
 
 # Include target in all.
@@ -488,7 +488,7 @@ mtspc/CMakeFiles/t_mtspc.dir/all: crl/crl.gui/CMakeFiles/crl-gui.dir/all
 mtspc/CMakeFiles/t_mtspc.dir/all: crl/crl.algorithm/CMakeFiles/crl-algorithm.dir/all
 	$(MAKE) -f mtspc/CMakeFiles/t_mtspc.dir/build.make mtspc/CMakeFiles/t_mtspc.dir/depend
 	$(MAKE) -f mtspc/CMakeFiles/t_mtspc.dir/build.make mtspc/CMakeFiles/t_mtspc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mrs/git/tsp_solvers/build/CMakeFiles --progress-num=57,58,59,60,61 "Built target t_mtspc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mrs/git/tsp_solvers/build/CMakeFiles --progress-num=61,62,63,64,65 "Built target t_mtspc"
 .PHONY : mtspc/CMakeFiles/t_mtspc.dir/all
 
 # Include target in all.
@@ -515,6 +515,63 @@ mtspc/CMakeFiles/t_mtspc.dir/clean:
 
 # clean rule for target.
 clean: mtspc/CMakeFiles/t_mtspc.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory mgctsp
+
+# Convenience name for "all" pass in the directory.
+mgctsp/all: mgctsp/CMakeFiles/t_mgctsp.dir/all
+
+.PHONY : mgctsp/all
+
+# Convenience name for "clean" pass in the directory.
+mgctsp/clean: mgctsp/CMakeFiles/t_mgctsp.dir/clean
+
+.PHONY : mgctsp/clean
+
+# Convenience name for "preinstall" pass in the directory.
+mgctsp/preinstall:
+
+.PHONY : mgctsp/preinstall
+
+#=============================================================================
+# Target rules for target mgctsp/CMakeFiles/t_mgctsp.dir
+
+# All Build rule for target.
+mgctsp/CMakeFiles/t_mgctsp.dir/all: crl/crl/CMakeFiles/crl.dir/all
+mgctsp/CMakeFiles/t_mgctsp.dir/all: crl/crl.gui/CMakeFiles/crl-gui.dir/all
+mgctsp/CMakeFiles/t_mgctsp.dir/all: crl/crl.algorithm/CMakeFiles/crl-algorithm.dir/all
+	$(MAKE) -f mgctsp/CMakeFiles/t_mgctsp.dir/build.make mgctsp/CMakeFiles/t_mgctsp.dir/depend
+	$(MAKE) -f mgctsp/CMakeFiles/t_mgctsp.dir/build.make mgctsp/CMakeFiles/t_mgctsp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mrs/git/tsp_solvers/build/CMakeFiles --progress-num=57,58,59,60 "Built target t_mgctsp"
+.PHONY : mgctsp/CMakeFiles/t_mgctsp.dir/all
+
+# Include target in all.
+all: mgctsp/CMakeFiles/t_mgctsp.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+mgctsp/CMakeFiles/t_mgctsp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mrs/git/tsp_solvers/build/CMakeFiles 46
+	$(MAKE) -f CMakeFiles/Makefile2 mgctsp/CMakeFiles/t_mgctsp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mrs/git/tsp_solvers/build/CMakeFiles 0
+.PHONY : mgctsp/CMakeFiles/t_mgctsp.dir/rule
+
+# Convenience name for target.
+t_mgctsp: mgctsp/CMakeFiles/t_mgctsp.dir/rule
+
+.PHONY : t_mgctsp
+
+# clean rule for target.
+mgctsp/CMakeFiles/t_mgctsp.dir/clean:
+	$(MAKE) -f mgctsp/CMakeFiles/t_mgctsp.dir/build.make mgctsp/CMakeFiles/t_mgctsp.dir/clean
+.PHONY : mgctsp/CMakeFiles/t_mgctsp.dir/clean
+
+# clean rule for target.
+clean: mgctsp/CMakeFiles/t_mgctsp.dir/clean
 
 .PHONY : clean
 

@@ -1,0 +1,100 @@
+/*
+ * File name: route_path_utils.cc
+ * Date:      2016/12/10 18:13
+ * Author:    Jan Faigl
+ */
+
+#include <cmath>
+
+#include "route_path_utils.h"
+
+/// - function -----------------------------------------------------------------
+double get_path_length(const CoordsVector &pts, bool closed)
+{
+   if(pts.size() < 2){
+      return 0;
+   }
+
+   double len = 0;
+   for (unsigned long i = 1; i < pts.size(); i++) {
+      len += sqrt(pts[i-1].squared_distance(pts[i]));
+      //std::cout << len << std::endl;
+   }
+   if (closed and pts.size() > 1) {
+      len += sqrt(pts.back().squared_distance(pts.front()));
+   }
+   return len;
+}
+
+/// - function -----------------------------------------------------------------
+double get_solution_length(const CoordsVectorVector &pts, bool closed)
+{
+   double cost = 0;
+   double totalCost = 0;
+   for(unsigned long i = 0; i < pts.size(); ++i)
+   {
+      cost = get_path_length(pts.at(i));
+      totalCost = totalCost + cost;
+   }
+   return totalCost;
+}
+
+double get_path_cost(const CoordsVector &pts, double maxCost, double ptCost, bool closed)
+{
+   double len = get_path_length(pts,closed) + (pts.size()-1)*ptCost; 
+   if(len > maxCost)
+     len = len + (len-maxCost)*100; 
+   return len;
+}
+
+double get_solution_cost(const CoordsVectorVector &paths, double maxCost, double ptCost, bool closed)
+{
+   double cost = 0;
+   double totalCost = 0;
+   for(unsigned long i = 0; i < paths.size(); i++)
+   {
+      cost = get_path_cost(paths.at(i),maxCost,ptCost,closed);
+      totalCost = totalCost + cost;
+   }
+   return totalCost;
+}
+
+#define dist(i, j) sqrt(path[i].squared_distance(path[j]))
+/// - function -----------------------------------------------------------------
+void two_opt(CoordsVector &path) 
+{
+   const int N = path.size();
+   int counter = 0;
+   double mchange;
+   do {
+      mchange = 0.0;
+      int mi = -1;
+      int mj = -1;
+      for (int i = 1; i < N; ++i) {
+         for (int j = i + 1; j < N-1; ++j) {
+            double change = 
+               dist(i-1, j) + dist(i, j+1) - dist(i-1, i) - dist(j, j+1);
+            if (mchange > change) {
+               mchange = change;
+               mi = i; mj = j;
+            }
+            counter += 1;
+         }
+      }
+      if (mi > 0 and mj > 0) {
+         CoordsVector newPath;
+         for (int i = 0; i < mi; ++i) {
+            newPath.push_back(path[i]);
+         }
+         for (int i = mj; i >= mi; --i) {
+            newPath.push_back(path[i]);
+         }
+         for (int i = mj+1; i < N; ++i) {
+            newPath.push_back(path[i]);
+         }
+         path = newPath;
+      }
+   } while (mchange < -1e-5);
+}
+
+/* end of route_path_utils.cc */

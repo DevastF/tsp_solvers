@@ -21,6 +21,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../crl/crl.loader/CMakeLists.txt"
   "../crl/crl.tsplib/CMakeLists.txt"
   "../crl/crl/CMakeLists.txt"
+  "../mgctsp/CMakeLists.txt"
   "../mk-tsp/CMakeLists.txt"
   "../mtspc/CMakeLists.txt"
   "/usr/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in"
@@ -141,6 +142,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "crl/crl.tsplib/CMakeFiles/CMakeDirectoryInformation.cmake"
   "mk-tsp/CMakeFiles/CMakeDirectoryInformation.cmake"
   "mtspc/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "mgctsp/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -153,4 +155,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "crl/crl.tsplib/CMakeFiles/crl-tsplib.dir/DependInfo.cmake"
   "mk-tsp/CMakeFiles/tmk-tsp.dir/DependInfo.cmake"
   "mtspc/CMakeFiles/t_mtspc.dir/DependInfo.cmake"
+  "mgctsp/CMakeFiles/t_mgctsp.dir/DependInfo.cmake"
   )

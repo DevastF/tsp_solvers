@@ -89,7 +89,7 @@ namespace graspc {
       const int p2; // best tabu solution
       const int p3; // best grasp solution
       const int R_T;
-      const int sizeRCL;
+      int sizeRCL; // autotuned
       const int sizeNeighborhood;
       const int sizeTabuList;
       const int tabuIterations;

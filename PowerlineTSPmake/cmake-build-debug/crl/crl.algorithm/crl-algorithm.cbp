@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="crl-algorithm"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\crl\;CMake Files\crl\crl\;CMake Files\crl\crl.gui\;CMake Files\crl\crl.algorithm\;CMake Files\crl\crl.loader\;CMake Files\crl\crl.tsplib\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crl-algorithm">
+				<Option output="/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/libcrl-algorithm.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/include/crl.core"/>
+					<Add directory="/usr/include/cairo"/>
+					<Add directory="/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 crl-algorithm"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="crl-algorithm/fast">
+				<Option output="/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/libcrl-algorithm.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/include/crl.core"/>
+					<Add directory="/usr/include/cairo"/>
+					<Add directory="/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 crl-algorithm/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/mrs/CLionProjects/PowerlineTSPmake/cmake-build-debug/crl/crl.algorithm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.algorithm/src/algorithm.cc">
+			<Option target="crl-algorithm"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.algorithm/src/algorithm.h">
+			<Option target="crl-algorithm"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.algorithm/src/algorithm_base.cc">
+			<Option target="crl-algorithm"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.algorithm/src/algorithm_base.h">
+			<Option target="crl-algorithm"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.algorithm/src/result_log.cc">
+			<Option target="crl-algorithm"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.algorithm/src/result_log.h">
+			<Option target="crl-algorithm"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.algorithm/src/text_result_log.cc">
+			<Option target="crl-algorithm"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.algorithm/src/text_result_log.h">
+			<Option target="crl-algorithm"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/cmake/FindCairo.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/cmake/FindLog4cxx.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\crl\"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.gui/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\crl.gui\"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.algorithm/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\crl.algorithm\"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.loader/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\crl.loader\"/>
+		</Unit>
+		<Unit filename="/home/mrs/CLionProjects/PowerlineTSPmake/crl/crl.tsplib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\crl\crl.tsplib\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -3,17 +3,17 @@
 #define __INSERTION_H__
 
 struct Insertion{
-    int SolutionLength;
+    double SolutionCost;
     int Target;
     int Agent;
     int InsertIndex;
 
-    Insertion(int l, int t, int a, int i) : SolutionLength(l), Target(t), Agent(a), InsertIndex(i) {}
+    Insertion(double l, int t, int a, int i) : SolutionCost(l), Target(t), Agent(a), InsertIndex(i) {}
 
     // not used atm
     bool operator()(Insertion const & a, Insertion const & b) const
     {
-        return a.SolutionLength < b.SolutionLength;
+        return a.SolutionCost < b.SolutionCost;
     }
 };
 
@@ -21,7 +21,7 @@ struct InsComp{
   
   bool operator()(const Insertion* a, const Insertion* b) const  
   { 
-      return a->SolutionLength < b->SolutionLength;
+      return a->SolutionCost < b->SolutionCost;
   }
 
 };

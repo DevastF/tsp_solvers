@@ -7,3 +7,4 @@
 subdirs("crl")
 subdirs("mk-tsp")
 subdirs("mtspc")
+subdirs("mgctsp")
